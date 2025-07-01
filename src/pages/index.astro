@@ -1,11 +1,14 @@
 ---
 console.log("Redirect index.astro");
+const base = import.meta.env.BASE_URL || "/dgklogistics-preview/";
+const locale = "nl";
+
 export async function get() {
-    console.log("Redirecting to /nl");
+    const location = `${base}${locale}`;
     return {
         status: 307,
         headers: {
-            location: "/nl",
+            location,
         },
     };
 }
