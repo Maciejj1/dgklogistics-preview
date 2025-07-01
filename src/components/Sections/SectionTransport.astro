@@ -1,6 +1,7 @@
 ---
 import { t } from "../../i18n/utils";
 const { lang } = Astro.props;
+const base = "/dgklogistics-preview";
 ---
 
 <section id="transport" class="bg-white text-primary-700 py-16 px-6 md:px-12">
@@ -19,7 +20,7 @@ const { lang } = Astro.props;
         <div class="animate-on-scroll">
             <div class="h-80 rounded-2xl overflow-hidden shadow-lg">
                 <img
-                    src="/images/image1.jpeg"
+                    src={`${base}/images/image1.jpeg`}
                     alt="Transport chłodniczy"
                     class="w-full h-full object-cover"
                 />
@@ -125,7 +126,7 @@ const { lang } = Astro.props;
         <div class="order-1 lg:order-2 animate-on-scroll">
             <div class="h-80 rounded-2xl overflow-hidden shadow-lg">
                 <img
-                    src="/images/image12.jpeg"
+                    src={`${base}/images/image12.jpeg`}
                     alt="Transport kontenerów"
                     class="w-full h-full object-cover"
                 />

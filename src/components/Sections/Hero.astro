@@ -5,8 +5,9 @@ export interface Props {
     backgroundImage?: string;
     lang?: "en" | "de" | "nl" | "pl";
 }
+const base = "/dgklogistics-preview";
 
-const { backgroundImage = "/images/image21.jpeg", lang = "pl" } =
+const { backgroundImage = `${base}/images/image21.jpeg`, lang = "pl" } =
     Astro.props as Props;
 ---
 

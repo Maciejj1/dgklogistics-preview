@@ -1,6 +1,7 @@
 ---
 const { lang } = Astro.props;
 import { t } from "../i18n/utils";
+const base = "/dgklogistics-preview";
 ---
 
 <footer class="bg-primary-900 text-white">
@@ -12,7 +13,7 @@ import { t } from "../i18n/utils";
                 <div class="lg:col-span-2">
                     <div class="mb-8">
                         <img
-                            src="/logo_transparent.png"
+                            src={`${base}/logo_transparent.png`}
                             alt="DGK Logistics"
                             class="h-12 w-auto mb-4"
                         />
