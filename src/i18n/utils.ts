@@ -1,8 +1,11 @@
 import { ui, defaultLang } from './ui';
 
 export function getLangFromUrl(url: URL) {
-    const [, lang] = url.pathname.split('/');
-    if (lang in ui) return lang as keyof typeof ui;
+    const basePath = '/dgklogistics-preview';
+    const pathWithoutBase = url.pathname.replace(basePath, '');
+    const pathParts = pathWithoutBase.split('/').filter(part => part);
+    const lang = pathParts[0];
+    if (lang && lang in ui) return lang as keyof typeof ui;
     return defaultLang;
 }
 

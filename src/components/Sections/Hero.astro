@@ -12,10 +12,10 @@ const { backgroundImage = `${base}/images/image21.jpeg`, lang = "pl" } =
 ---
 
 <section
-    class="relative min-h-[95vh] flex items-center bg-cover bg-center text-white"
+    class="relative min-h-[95vh] flex items-center bg-cover bg-center text-white overflow-hidden"
     style={`background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${backgroundImage});`}
 >
-    <div class="container mx-auto px-6 lg:px-12 py-24">
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-24 md:py-24">
         <div class="max-w-4xl">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">
                 {t(lang, "hero.title")}

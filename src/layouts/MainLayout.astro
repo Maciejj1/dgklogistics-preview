@@ -22,7 +22,7 @@ const ogImageURL = new URL("/opengraph.jpg", Astro.site).toString();
 const base = "/dgklogistics-preview";
 ---
 
-<html lang={lang} class="scroll-smooth">
+<html lang={lang} class="scroll-smooth overflow-x-hidden">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,6 +42,21 @@ const base = "/dgklogistics-preview";
             :root {
                 --primary-900: #1a365d;
                 --accent-500: #f97316;
+            }
+
+            html,
+            body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            * {
+                max-width: 100%;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
             }
 
             @font-face {
@@ -84,7 +99,7 @@ const base = "/dgklogistics-preview";
 
         <link rel="icon" type="image/png" href="/dgk_icon.png" />
     </head>
-    <body class="bg-neutral-50 text-primary-900 antialiased">
+    <body class="bg-neutral-50 text-primary-900 antialiased overflow-x-hidden">
         <Header lang={lang} />
         <main class="min-h-screen">
             <slot />

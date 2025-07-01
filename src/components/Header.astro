@@ -90,20 +90,20 @@ function flagSrc(code) {
 
                 <div
                     id="desktop-lang-dropdown"
-                    class="hidden absolute right-0 mt-2 w-28 bg-white border border-gray-300 rounded-md shadow-lg z-50"
+                    class="hidden absolute right-0 mt-2 min-w-[80px] bg-white border border-gray-300 rounded-md shadow-lg z-50"
                 >
                     {
                         languages.map((code) => (
                             <a
                                 href={`${base}/${code}`}
-                                class="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100"
+                                class="flex items-center space-x-3 px-4 py-2 hover:bg-gray-100 w-full"
                             >
                                 <img
                                     src={flagSrc(code)}
                                     alt={code}
-                                    class="h-5 w-5 rounded-sm"
+                                    class="h-5 w-5 rounded-sm flex-shrink-0"
                                 />
-                                <span class="text-sm font-medium text-gray-700 uppercase">
+                                <span class="text-sm font-medium text-gray-700 uppercase whitespace-nowrap">
                                     {code}
                                 </span>
                             </a>
