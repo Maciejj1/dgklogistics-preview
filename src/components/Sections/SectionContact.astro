@@ -1,6 +1,7 @@
 ---
 import { t } from "../../i18n/utils";
 const { lang } = Astro.props;
+const base = "/dgklogistics-preview";
 ---
 
 <script
@@ -186,12 +187,15 @@ const { lang } = Astro.props;
                         class="grid md:grid-cols-2 gap-4 mt-8 pt-8 border-t border-neutral-200"
                     >
                         <a
-                            href={`/${lang}#transport`}
+                            href={`${base}/${lang}#transport`}
                             class="contact-button-secondary"
                         >
                             {t(lang, "contact.buttons.transport")}
                         </a>
-                        <a href={`/${lang}#spedition`} class="contact-button">
+                        <a
+                            href={`${base}/${lang}#spedition`}
+                            class="contact-button"
+                        >
                             {t(lang, "contact.buttons.join")}
                         </a>
                     </div>
