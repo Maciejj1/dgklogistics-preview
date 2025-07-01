@@ -1,0 +1,39 @@
+---
+import { t } from "../i18n/utils";
+const { lang } = Astro.props;
+---
+
+<section id="contact" class="p-12 bg-gray-100 text-gray-900 max-w-xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4">{t(lang, "nav.home")}</h2>
+    <form
+        action="https://formspree.io/f/your-form-id"
+        method="POST"
+        class="flex flex-col space-y-4"
+    >
+        <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            class="p-2 border border-gray-300 rounded"
+        />
+        <input
+            type="email"
+            name="_replyto"
+            placeholder="Email"
+            required
+            class="p-2 border border-gray-300 rounded"
+        />
+        <textarea
+            name="message"
+            placeholder="Message"
+            rows="5"
+            required
+            class="p-2 border border-gray-300 rounded"></textarea>
+        <button
+            type="submit"
+            class="bg-dgkblue1 text-white py-2 rounded hover:bg-dgkblue2"
+            >{t(lang, "nav.hello")}</button
+        >
+    </form>
+</section>

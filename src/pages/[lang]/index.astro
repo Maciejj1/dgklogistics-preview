@@ -1,0 +1,35 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import SectionTransport from "../../components/Sections/SectionTransport.astro";
+import SectionSpedition from "../../components/Sections/SectionSpedition.astro";
+import SectionAbout from "../../components/Sections/SectionAbout.astro";
+import SectionMedia from "../../components/Sections/SectionMedia.astro";
+import SectionBlog from "../../components/Sections/SectionBlog.astro";
+import SectionContact from "../../components/Sections/SectionContact.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Hero from "../../components/Sections/Hero.astro";
+import SectionGallery from "../../components/Sections/SectionGallery.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+    return [
+        { params: { lang: "en" } },
+        { params: { lang: "de" } },
+        { params: { lang: "nl" } },
+        { params: { lang: "pl" } },
+    ];
+}
+---
+
+<MainLayout lang={lang}>
+    <Hero lang={lang} />
+    <SectionTransport lang={lang} />
+    <SectionSpedition lang={lang} />
+    <SectionAbout lang={lang} />
+    <SectionGallery lang={lang} />
+    <SectionMedia lang={lang} />
+    <SectionBlog lang={lang} />
+    <SectionContact lang={lang} />
+</MainLayout>

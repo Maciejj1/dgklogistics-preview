@@ -1,0 +1,120 @@
+---
+import { t } from "../../i18n/utils";
+const { lang } = Astro.props;
+---
+
+<section
+    id="blog"
+    class="text-primary-700 py-16 px-6 md:px-12"
+    style="max-width:90%;margin-left:auto;margin-right:auto;"
+>
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl">
+        </div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl">
+        </div>
+    </div>
+
+    <div class="container-width relative z-10">
+        <div class="text-center mb-16 fade-in">
+            <h2
+                class="text-4xl font-bold mb-6 text-center border-b border-text-primary-700 pb-4"
+            >
+                {t(lang, "blog.title")}
+            </h2>
+            <p class="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto">
+                {t(lang, "blog.subtitle")}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div
+                class="premium-card group p-10 md:p-12 hover:shadow-xl transition-all duration-500"
+            >
+                <div class="text-center mb-8">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-8 group-hover:scale-110 transition-transform duration-300"
+                    >
+                        📚
+                    </div>
+                    <h3 class="text-2xl font-bold text-neutral-900 mb-4">
+                        {t(lang, "blog.guides.title")}
+                    </h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        {t(lang, "blog.guides.description")}
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 border-t border-neutral-100"></div>
+            </div>
+
+            <!-- Industry News -->
+            <div
+                class="premium-card group p-10 md:p-12 hover:shadow-xl transition-all duration-500"
+            >
+                <div class="text-center mb-8">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-8 group-hover:scale-110 transition-transform duration-300"
+                    >
+                        📰
+                    </div>
+                    <h3 class="text-2xl font-bold text-neutral-900 mb-4">
+                        {t(lang, "blog.industry.title")}
+                    </h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        {t(lang, "blog.industry.description")}
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 border-t border-neutral-100"></div>
+            </div>
+
+            <!-- Company & Partnership -->
+            <div
+                class="premium-card group p-10 md:p-12 hover:shadow-xl transition-all duration-500"
+            >
+                <div class="text-center mb-8">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl mx-auto mb-8 group-hover:scale-110 transition-transform duration-300"
+                    >
+                        🤝
+                    </div>
+                    <h3 class="text-2xl font-bold text-neutral-900 mb-4">
+                        {t(lang, "blog.company.title")}
+                    </h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        {t(lang, "blog.company.description")}
+                    </p>
+                </div>
+                <div class="mt-auto pt-6 border-t border-neutral-100"></div>
+            </div>
+        </div>
+
+        <!-- Coming Soon / Newsletter Section -->
+        <div
+            class="premium-card bg-gradient-to-br from-primary-50 to-accent-50 border-2 border-primary-100 p-16 md:p-20 relative overflow-hidden"
+        >
+            <div
+                class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-200 to-accent-200 rounded-full blur-2xl opacity-30"
+            >
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div
+                        class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-3xl text-white text-4xl mb-10 shadow-lg transform transition-transform hover:scale-105"
+                    >
+                        ✍️
+                    </div>
+
+                    <h3 class="text-4xl font-bold text-neutral-900 mb-8">
+                        {t(lang, "blog.coming.title")}
+                    </h3>
+                    <p
+                        class="text-xl text-neutral-600 mb-12 max-w-2xl mx-auto leading-relaxed"
+                    >
+                        {t(lang, "blog.coming.description")}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

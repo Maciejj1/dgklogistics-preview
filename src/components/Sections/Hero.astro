@@ -1,0 +1,136 @@
+---
+import { t } from "../../i18n/utils";
+
+export interface Props {
+    backgroundImage?: string;
+    lang?: "en" | "de" | "nl" | "pl";
+}
+
+const { backgroundImage = "/images/image21.jpeg", lang = "pl" } =
+    Astro.props as Props;
+---
+
+<section
+    class="relative min-h-[95vh] flex items-center bg-cover bg-center text-white"
+    style={`background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${backgroundImage});`}
+>
+    <div class="container mx-auto px-6 lg:px-12 py-24">
+        <div class="max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                {t(lang, "hero.title")}
+            </h1>
+            <p class="text-lg md:text-xl mb-12 text-white/90">
+                {t(lang, "hero.subtitle")}
+            </p>
+        </div>
+
+        <!-- Poprawiona siatka kart -->
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto animate-on-scroll"
+        >
+            <!-- Karta 1 -->
+
+            <div
+                class="premium-card glass text-left group hover:scale-105 transition-transform duration-300"
+            >
+                <div class="flex items-start space-x-4 mb-4">
+                    <div
+                        class="flex-shrink-0 w-16 h-16 bg-accent-500 rounded-xl flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m-.4 0L3 3H1m6 10v6a2 2 0 002 2h8a2 2 0 002-2v-6m-9-4h.01M16 9h.01"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-white mb-2">
+                            {t(lang, "hero.card1.title")}
+                        </h3>
+                        <p class="text-white/70 text-sm leading-relaxed">
+                            {t(lang, "hero.card1.text")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Karta 2 -->
+            <div
+                class="premium-card glass text-left group hover:scale-105 transition-transform duration-300"
+            >
+                <div class="flex items-start space-x-4 mb-4">
+                    <div
+                        class="flex-shrink-0 w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-white mb-2">
+                            {t(lang, "hero.card2.title")}
+                        </h3>
+                        <p class="text-white/70 text-sm leading-relaxed">
+                            {t(lang, "hero.card2.text")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Karta 3 -->
+            <div
+                class="premium-card glass text-left group hover:scale-105 transition-transform duration-300"
+            >
+                <div class="flex items-start space-x-4 mb-4">
+                    <div
+                        class="flex-shrink-0 w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center"
+                    >
+                        <svg
+                            class="w-8 h-8 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path d="M12 3l-6.5 9h4.5v9h4v-9h4.5L12 3z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-white mb-2">
+                            {t(lang, "hero.card3.title")}
+                        </h3>
+                        <p class="text-white/70 text-sm leading-relaxed">
+                            {t(lang, "hero.card3.text")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <svg
+                    class="w-6 h-6 text-white/60"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>

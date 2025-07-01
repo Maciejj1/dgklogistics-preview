@@ -1,0 +1,12 @@
+---
+console.log("Redirect index.astro");
+export async function get() {
+    console.log("Redirecting to /nl");
+    return {
+        status: 307,
+        headers: {
+            location: "/nl",
+        },
+    };
+}
+---

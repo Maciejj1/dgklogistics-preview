@@ -1,0 +1,367 @@
+---
+import { t } from "../i18n/utils";
+const { lang } = Astro.props;
+
+const languages = ["pl", "en", "nl", "de"];
+
+function flagSrc(code) {
+    return `/icons/${code}.png`;
+}
+---
+
+<header
+    class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-md border-b border-gray-200"
+>
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+        <div class="flex items-center space-x-4">
+            <img
+                src="/logo_transparent.png"
+                alt="DGK Logistics"
+                class="h-12 w-auto"
+            />
+            <h1 class="text-1xl font-extrabold text-gray-900">
+                {t(lang, "nav.companyName")}
+            </h1>
+        </div>
+
+        <div class="flex items-center space-x-6">
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8 font-medium text-gray-700">
+                <a
+                    href={`/${lang}#transport`}
+                    class="hover:text-[#f97316] transition-colors"
+                    >{t(lang, "nav.transport")}</a
+                >
+                <a
+                    href={`/${lang}#spedition`}
+                    class="hover:text-[#f97316] transition-colors"
+                    >{t(lang, "nav.spedition")}</a
+                >
+                <a
+                    href={`/${lang}#about`}
+                    class="hover:text-[#f97316] transition-colors"
+                    >{t(lang, "nav.about")}</a
+                >
+                <a
+                    href={`/${lang}#gallery`}
+                    class="hover:text-[#f97316] transition-colors"
+                    >{t(lang, "nav.gallery")}</a
+                >
+                <a
+                    href={`/${lang}#media`}
+                    class="hover:text-[#f97316] transition-colors"
+                    >{t(lang, "nav.media")}</a
+                >
+                <a
+                    href={`/${lang}#contact`}
+                    class="hover:text-[#f97316] transition-colors"
+                    >{t(lang, "nav.contact")}</a
+                >
+            </nav>
+
+            <!-- Desktop Language Selector -->
+            <div class="hidden md:block relative">
+                <button
+                    id="desktop-lang-btn"
+                    class="flex items-center focus:outline-none"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    <img
+                        src={flagSrc(lang)}
+                        alt={lang}
+                        class="h-6 w-6 rounded-sm"
+                    />
+                    <svg
+                        class="ml-2 h-4 w-4 text-gray-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width={2}
+                            d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div
+                    id="desktop-lang-dropdown"
+                    class="hidden absolute right-0 mt-2 w-28 bg-white border border-gray-300 rounded-md shadow-lg z-50"
+                >
+                    {
+                        languages.map((code) => (
+                            <a
+                                href={`/${code}`}
+                                class="flex items-center space-x-2 px-3 py-2 hover:bg-gray-100"
+                            >
+                                <img
+                                    src={flagSrc(code)}
+                                    alt={code}
+                                    class="h-5 w-5 rounded-sm"
+                                />
+                                <span class="text-sm font-medium text-gray-700 uppercase">
+                                    {code}
+                                </span>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-toggle"
+                class="md:hidden text-gray-700 focus:outline-none"
+                aria-label="Toggle menu"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Background Overlay -->
+    <div
+        id="mobile-menu-overlay"
+        class="hidden md:hidden fixed inset-0 z-50 bg-black/50"
+    >
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+        id="mobile-menu"
+        class="hidden md:hidden fixed inset-0 z-50 bg-white transform transition-all duration-300 ease-in-out"
+        style="background: white;"
+    >
+        <div
+            class="flex justify-between items-center p-6 border-b border-gray-200 bg-white shadow-md"
+        >
+            <div class="flex items-center space-x-4">
+                <img
+                    src="/logo_transparent.png"
+                    alt="DGK Logistics"
+                    class="h-12 w-auto"
+                />
+                <h1 class="text-1xl font-extrabold text-gray-900">
+                    {t(lang, "nav.companyName")}
+                </h1>
+            </div>
+
+            <button
+                id="mobile-menu-close"
+                class="text-gray-700 hover:text-[#f97316] transition-colors focus:outline-none p-2"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav
+            class="p-6 overflow-y-auto max-h-[calc(100vh-80px)] bg-white shadow-md"
+        >
+            <div class="space-y-6">
+                <a
+                    href={`/${lang}#transport`}
+                    class="block text-lg font-medium text-gray-700 hover:text-[#f97316] transition-colors py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >{t(lang, "nav.transport")}</a
+                >
+                <a
+                    href={`/${lang}#spedition`}
+                    class="block text-lg font-medium text-gray-700 hover:text-[#f97316] transition-colors py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >{t(lang, "nav.spedition")}</a
+                >
+                <a
+                    href={`/${lang}#about`}
+                    class="block text-lg font-medium text-gray-700 hover:text-[#f97316] transition-colors py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >{t(lang, "nav.about")}</a
+                >
+                <a
+                    href={`/${lang}#gallery`}
+                    class="block text-lg font-medium text-gray-700 hover:text-[#f97316] transition-colors py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >{t(lang, "nav.gallery")}</a
+                >
+                <a
+                    href={`/${lang}#media`}
+                    class="block text-lg font-medium text-gray-700 hover:text-[#f97316] transition-colors py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >{t(lang, "nav.media")}</a
+                >
+                <a
+                    href={`/${lang}#contact`}
+                    class="block text-lg font-medium text-gray-700 hover:text-[#f97316] transition-colors py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >{t(lang, "nav.contact")}</a
+                >
+            </div>
+
+            <!-- Mobile Language Selector -->
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <h3
+                    class="text-sm font-semibold text-gray-400 uppercase mb-4 px-4"
+                >
+                    {t(lang, "nav.selectLanguage")}
+                </h3>
+                <div class="grid grid-cols-2 gap-3 px-2">
+                    {
+                        languages.map((code) => (
+                            <a
+                                href={`/${code}`}
+                                class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100 hover:border-gray-200"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <img
+                                        src={flagSrc(code)}
+                                        alt={code}
+                                        class="h-6 w-6 rounded-sm"
+                                    />
+                                    <span class="font-medium text-gray-700 uppercase">
+                                        {code}
+                                    </span>
+                                </div>
+                                {code === lang && (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 text-[#f97316]"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                )}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+        const mobileMenuClose = document.getElementById("mobile-menu-close");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuOverlay = document.getElementById(
+            "mobile-menu-overlay",
+        );
+        const body = document.body;
+
+        function toggleMobileMenu(show) {
+            if (show) {
+                mobileMenu?.classList.remove("hidden");
+                mobileMenuOverlay?.classList.remove("hidden");
+                mobileMenu?.classList.add("animate-fade-in");
+                body.style.overflow = "hidden";
+            } else {
+                mobileMenu?.classList.add("animate-fade-out");
+                mobileMenuOverlay?.classList.add("hidden");
+                setTimeout(() => {
+                    mobileMenu?.classList.add("hidden");
+                    mobileMenu?.classList.remove(
+                        "animate-fade-out",
+                        "animate-fade-in",
+                    );
+                }, 300);
+                body.style.overflow = "";
+            }
+        }
+
+        mobileMenuToggle?.addEventListener("click", () =>
+            toggleMobileMenu(true),
+        );
+        mobileMenuClose?.addEventListener("click", () =>
+            toggleMobileMenu(false),
+        );
+        mobileMenuOverlay?.addEventListener("click", () =>
+            toggleMobileMenu(false),
+        );
+
+        // Close mobile menu when clicking on a link
+        mobileMenu?.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => toggleMobileMenu(false));
+        });
+
+        // Desktop language dropdown functionality
+        const desktopLangBtn = document.getElementById("desktop-lang-btn");
+        const desktopLangDropdown = document.getElementById(
+            "desktop-lang-dropdown",
+        );
+
+        desktopLangBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            desktopLangDropdown?.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", (e) => {
+            const target = e.target as Node;
+            if (
+                desktopLangDropdown &&
+                desktopLangBtn &&
+                !desktopLangDropdown.contains(target) &&
+                !desktopLangBtn.contains(target)
+            ) {
+                desktopLangDropdown.classList.add("hidden");
+            }
+        });
+    });
+</script>
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .animate-fade-out {
+        animation: fadeOut 0.3s ease-out forwards;
+    }
+</style>

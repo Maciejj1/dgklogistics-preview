@@ -1,0 +1,185 @@
+---
+import { SEO } from "astro-seo";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { t, getLangFromUrl } from "../i18n/utils";
+
+const { title = "DGK Logistics", footerMargin = true } = Astro.props;
+
+// Pobieramy język z URL, domyślnie "pl"
+const { lang } = Astro.props;
+
+// Budujemy tytuł strony (np. "Strona | DGK Logistics")
+const makeTitle = title.includes("DGK Logistics")
+    ? title
+    : `${title} | DGK Logistics`;
+
+// Canonical URL (pełny adres strony)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+// OpenGraph obraz (podmień na własny jeśli masz)
+const ogImageURL = new URL("/opengraph.jpg", Astro.site).toString();
+---
+
+<html lang={lang} class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{makeTitle}</title>
+
+        <!-- Performance optimizations -->
+        <link rel="preload" as="image" href="/logo_transparent.png" />
+        <link rel="preload" as="image" href="/dgk_icon.png" />
+
+        <!-- Preload critical fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- Critical CSS -->
+        <style is:inline>
+            /* Podstawowe style, które są potrzebne od razu */
+            :root {
+                --primary-900: #1a365d;
+                --accent-500: #f97316;
+            }
+
+            @font-face {
+                font-family: "Your Main Font";
+                src: url("/fonts/your-main-font.woff2") format("woff2");
+                font-display: swap;
+            }
+
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(20px);
+                transition:
+                    opacity 0.6s ease-out,
+                    transform 0.6s ease-out;
+            }
+
+            .animate-on-scroll.in-view {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+
+        <!-- SEO meta -->
+        <SEO
+            title={makeTitle}
+            description={t(lang, "description")}
+            canonical={canonicalURL}
+            openGraph={{
+                basic: {
+                    url: canonicalURL,
+                    type: "website",
+                    title: makeTitle,
+                    image: ogImageURL,
+                },
+                image: {
+                    alt: t(lang, "nav.hello"),
+                },
+            }}
+        />
+
+        <link rel="icon" type="image/png" href="/dgk_icon.png" />
+    </head>
+    <body class="bg-neutral-50 text-primary-900 antialiased">
+        <Header lang={lang} />
+        <main class="min-h-screen">
+            <slot />
+        </main>
+        <Footer lang={lang} margin={footerMargin} />
+
+        <!-- Scroll to top functionality -->
+        <button
+            id="scroll-to-top"
+            class="fixed bottom-8 right-8 bg-accent-500 text-white p-3 rounded-full shadow-premium hover:bg-accent-600 transition-all duration-300 transform translate-y-16 opacity-0 z-50"
+            aria-label="Scroll to top"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </button>
+
+        <script>
+            // Defer non-critical JavaScript
+            document.addEventListener("DOMContentLoaded", () => {
+                // Scroll to top functionality
+                const scrollButton = document.getElementById("scroll-to-top");
+                let scrollTimeout;
+
+                const handleScroll = () => {
+                    if (scrollTimeout) {
+                        window.cancelAnimationFrame(scrollTimeout);
+                    }
+
+                    scrollTimeout = window.requestAnimationFrame(() => {
+                        if (window.pageYOffset > 300) {
+                            scrollButton?.classList.remove(
+                                "translate-y-16",
+                                "opacity-0",
+                            );
+                            scrollButton?.classList.add(
+                                "translate-y-0",
+                                "opacity-100",
+                            );
+                        } else {
+                            scrollButton?.classList.add(
+                                "translate-y-16",
+                                "opacity-0",
+                            );
+                            scrollButton?.classList.remove(
+                                "translate-y-0",
+                                "opacity-100",
+                            );
+                        }
+                    });
+                };
+
+                window.addEventListener("scroll", handleScroll, {
+                    passive: true,
+                });
+
+                scrollButton?.addEventListener("click", () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+
+                // Optimize intersection observer
+                const observerCallback = (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("in-view");
+                            observer.unobserve(entry.target); // Stop observing once animated
+                        }
+                    });
+                };
+
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px",
+                };
+
+                const observer = new IntersectionObserver(
+                    observerCallback,
+                    observerOptions,
+                );
+
+                // Observe all elements with animate-on-scroll class
+                document
+                    .querySelectorAll(".animate-on-scroll")
+                    .forEach((el) => {
+                        observer.observe(el);
+                    });
+            });
+        </script>
+    </body>
+</html>
