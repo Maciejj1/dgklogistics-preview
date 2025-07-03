@@ -241,9 +241,9 @@ const base = "/dgklogistics-preview";
                                     {t(lang, "contact.info.address")}
                                 </h4>
                                 <p class="text-primary-600">
-                                    DGK Logistics B.V.<br />
-                                    Hoofdstraat 123<br />
-                                    1234 AB Amsterdam<br />
+                                    DGK Logistics<br />
+                                    Bredeweg 66b 83<br />
+                                    2752 AB Moerkapelle<br />
                                     Nederland
                                 </p>
                             </div>
@@ -273,10 +273,10 @@ const base = "/dgklogistics-preview";
                                     {t(lang, "contact.info.phone")}
                                 </h4>
                                 <a
-                                    href="tel:+31201234567"
+                                    href="tel:0031 613197574"
                                     class="text-accent-600 hover:text-accent-700 transition-colors"
                                 >
-                                    +31 20 123 4567
+                                    0031 613197574
                                 </a>
                             </div>
                         </div>
@@ -425,13 +425,13 @@ const base = "/dgklogistics-preview";
 
 <script
     is:inline
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfxx3vDF4De_KcS44Bhd-S_kamh3PfiBg&callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-oqTpNsrCsxzYPaq5GiuDA0NpSUs4jyI&callback=initMap"
     defer></script>
 
 <script is:inline>
     function initMap() {
-        // Współrzędne DGK Logistics (Amsterdam)
-        const dgkLocation = { lat: 52.35948, lng: 4.87834 }; // Zastąp właściwymi współrzędnymi
+        // Współrzędne DGK Logistics (Moerkapelle)
+        const dgkLocation = { lat: 52.0465, lng: 4.5823 }; // Współrzędne dla Moerkapelle
 
         // Tworzenie mapy
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -480,7 +480,7 @@ const base = "/dgklogistics-preview";
         const marker = new google.maps.Marker({
             position: dgkLocation,
             map: map,
-            title: "DGK Logistics B.V.",
+            title: "DGK Logistics",
             animation: google.maps.Animation.DROP,
         });
 
@@ -488,8 +488,8 @@ const base = "/dgklogistics-preview";
         const infowindow = new google.maps.InfoWindow({
             content: `
                 <div style="padding: 8px;">
-                    <h3 style="margin: 0 0 8px; font-weight: 600;">DGK Logistics B.V.</h3>
-                    <p style="margin: 0;">Hoofdstraat 123<br>1234 AB Amsterdam<br>Nederland</p>
+                    <h3 style="margin: 0 0 8px; font-weight: 600;">DGK Logistics</h3>
+                    <p style="margin: 0;">Bredeweg 66b 83<br>2752 AB Moerkapelle<br>Nederland</p>
                 </div>
             `,
         });
@@ -501,7 +501,7 @@ const base = "/dgklogistics-preview";
     }
 
     (function () {
-        emailjs.init("l1e0nc5oVfShQxF4p");
+        emailjs.init("504pOGaF5i_bk6VB7");
     })();
 
     function handleSubmit(event) {
@@ -540,7 +540,7 @@ const base = "/dgklogistics-preview";
 
         // Wyślij e-mail przez EmailJS
         emailjs
-            .send("service_xea7ovv", "template_a8brsqg", templateParams)
+            .send("service_ssved6m", "template_8k4nf7m", templateParams)
             .then(
                 function (response) {
                     alert("Wiadomość została wysłana!");
